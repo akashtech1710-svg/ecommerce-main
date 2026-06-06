@@ -58,7 +58,7 @@ jobs:
           framework: terraform
           output_format: cli
           soft_fail: true
-#running terraform plan
+#running terraform plan in a separtate job
   plan:
     name: Terraform Plan
     runs-on: ubuntu-latest
