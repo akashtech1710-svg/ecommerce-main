@@ -59,3 +59,16 @@ resource "aws_eks_fargate_profile" "name" {
   }
 }
 
+resource "aws_eks_fargate_profile" "kube_system" {
+  cluster_name           = var.cluster_name
+  fargate_profile_name   = "kube-system"
+  pod_execution_role_arn = aws_iam_role.fargate_pod_role.arn
+  subnet_ids             = var.subnet_ids
+  selector {
+    namespace = "kube-system"
+    labels = {
+      "k8s-app" = "kube-dns"
+    }
+  }
+}
+
